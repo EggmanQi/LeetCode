@@ -26,7 +26,9 @@ func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
     
     let arr_2 = solotion_2(nums1, nums2) // 20+ ms
     
-    print(arr_1, arr_2, separator: ",")
+    let arr_3 = solotion_3(nums1, nums2) // 40+ ms
+    
+    print(arr_1, arr_2, arr_3, separator: ",")
     
     return []
 }
@@ -72,6 +74,43 @@ func solotion_2(_ nums1: [Int], _ nums2: [Int]) -> [Int]
     }
     
     return result
+}
+
+// 最开始的想法, 对语法不熟悉所以要翻答案才能写出来
+func solotion_3(_ nums1: [Int], _ nums2: [Int]) -> [Int]
+{
+    var result:[Int] = []
+    var indexs:[Int] = []
+    
+    for i in 0..<nums1.count {
+        let temp = nums1[i]
+        
+        for j in 0..<nums2.count {
+            if temp == nums2[j] {
+                var exist = false
+                for k in 0..<indexs.count {
+                    if j==indexs[k] {
+                        exist = true
+                        break
+                    }
+                }
+                
+                if !exist {
+                    indexs.append(j)
+                    result.append(temp)
+                    break;
+                }
+            }
+        }
+    }
+    
+    return result
+}
+
+// 给定有序的数组, 遍历时可从上一次重复的数字下标开始
+func solotion_4(_ nums1: [Int], _ nums2: [Int]) -> [Int]
+{
+    return []
 }
 
 func errorHandle(_ nums: [Int]) -> Bool
