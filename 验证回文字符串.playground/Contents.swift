@@ -45,7 +45,7 @@ func solution_2(_ s:String) -> Bool {
     }
     
     let count = s.count
-    var char = s.lowercased().cString(using: .utf8)
+	let char = s.lowercased().cString(using: .utf8)
     var i = 0
     var j = count-1
     while i != j {
