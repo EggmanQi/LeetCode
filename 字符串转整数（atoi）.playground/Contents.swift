@@ -27,19 +27,16 @@ func solve_2022_part2(_ str: String) -> Int {
  内存消耗：14 MB, 在所有 Swift 提交中击败了 41.05% 的用户
  */
 	let chars = str.map{$0}
-	let n = chars.count
 	var idx = 0
 	// 起始下标过掉前导空格
-	while (idx<n && chars[idx] == " ") {
+	while (idx<chars.count && chars[idx] == " ") {
 		idx+=1;
 	}
-	if (idx == n) {
+	if (idx == chars.count) {
 		return 0
 	}
-	
-	print(idx,chars)
-	
-	let num = "0123456789"
+		
+	// 问题不严谨, 多个 "+" "-" 时描述模糊
 	var negative = false
 	if chars[idx] == "+" {
 		negative = false
@@ -47,13 +44,10 @@ func solve_2022_part2(_ str: String) -> Int {
 	}else if chars[idx] == "-" {
 		negative = true
 		idx += 1
-	}else if (false == num.contains(chars[idx])) {
-		// 非数字, 中止
-		return 0
 	}
-	
+		
 	var ans = 0
-	while (idx < n && num.contains(chars[idx])) {
+	while (idx < chars.count && chars[idx] >= "0" && chars[idx] <= "9") {
 		let digit:Int32 = Int32(chars[idx].wholeNumberValue ?? 0) // 注意注释, 能识别特殊字符的数字
 		if (ans > (Int32.max - digit)/10) {
 			// ans*10 + digit > Int.max
