@@ -57,6 +57,10 @@ func twoSum_Mix(_ numbers: [Int], _ target: Int) -> [Int] {
 	 执行用时： 28 ms | >76.24%
 	 内存消耗： 14.2 MB | >6.08%
 	 */
+	
+	var i = 0
+	var j = numbers.count-1
+	
 	while i<j {
 		let m =  (i+j) >> 1
 //		print("numbers[i] + numbers[m] = ", numbers[i] + numbers[m])
